@@ -1,0 +1,511 @@
+/* ---------- Colour palette (Palette A) ---------- */
+:root {
+  /* Neutral (slightly cooler, like the sample UI) */
+  --color-neutral-900: #020617;
+  --color-neutral-800: #020617;
+  --color-neutral-700: #111827;
+  --color-neutral-200: #e5e7eb;
+  --color-neutral-100: #f3f4f6;
+  --color-neutral-50:  #f8fafc;
+
+  /* Primary blues */
+  --color-primary-700: #1d4ed8;
+  --color-primary-600: #2563eb;
+  --color-primary-500: #3b82f6;
+  --color-primary-50:  #eff6ff;
+
+  /* Accent (orange for buttons / highlights) */
+  --color-accent-500: #f97316;
+  --color-accent-400: #fb923c;
+  --color-accent-50:  #fff7ed;
+
+  /* Semantic */
+  --color-success-500: #16a34a;
+  --color-success-50:  #ecfdf5;
+  --color-warning-500: #f59e0b;
+  --color-warning-50:  #fffbeb;
+  --color-danger-500:  #dc2626;
+  --color-danger-50:   #fef2f2;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+
+/* Make flex layout work full-height */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* was: var(--color-neutral-50); */
+  background-color: var(--color-neutral-100);   /* softer grey */
+  color: var(--color-neutral-900);
+}
+
+
+/* ========== APP LAYOUT ========== */
+
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+
+.sidebar {
+  width: 260px;
+  background: var(--color-neutral-900);
+  color: var(--color-neutral-50);
+  display: flex;
+  flex-direction: column;
+  padding: 20px 18px;
+}
+
+
+.sidebar-top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.sidebar-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: var(--color-primary-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+.sidebar-user-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.sidebar-user-role {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.sidebar-nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar-link {
+  padding: 8px 12px;
+  border-radius: 999px;            
+  font-size: 0.9rem;
+  color: #e5e7eb;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+  outline: none;                
+}
+
+.sidebar-link:hover {
+  background: rgba(148, 163, 184, 0.16);
+}
+
+.sidebar-link.active {
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.6); 
+}
+
+
+
+.sidebar-section-label {
+  margin: 14px 0 4px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
+}
+
+
+.sidebar-bottom {
+  margin-top: 18px;
+}
+
+.btn-logout {
+  width: 100%;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 0;
+  font-size: 0.85rem;
+  cursor: pointer;
+  background: var(--color-accent-500);
+  color: #fff;
+  font-weight: 500;
+  transition: background 0.15s ease, transform 0.05s ease;
+}
+
+.btn-logout:hover {
+  background: var(--color-accent-400);
+  transform: translateY(-1px);
+}
+
+
+/* Main area (right hand side) */
+
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* If you later re-add a header inside NavBar, this styles it */
+.app-header {
+  height: 72px;
+  padding: 16px 28px;
+  border-bottom: 1px solid var(--color-neutral-200);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffffcc;
+  backdrop-filter: blur(8px);
+}
+
+.header-kicker {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  color: #6b7280;
+  margin-bottom: 2px;
+}
+
+.header-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.header-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+/* This is the main content area: fill height and start at top */
+.app-content {
+  flex: 1;                      /* fill remaining vertical space */
+  display: block;               /* normal document flow */
+  padding: 24px 28px 32px;
+}
+
+/* Generic page container helpers: top-aligned, centred horizontally */
+.page,
+.dashboard-page,
+.workspace-page,
+.leaderboard-page,
+.governance-page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Basic UI helpers used by other pages */
+
+.card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 16px 18px;
+  border: 1px solid var(--color-neutral-200);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.05);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.table th,
+.table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--color-neutral-200);
+  text-align: left;
+}
+
+.btn-primary {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  background: var(--color-primary-600);
+  color: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-500);
+}
+
+/* Error banner */
+
+.error-banner {
+  background: var(--color-danger-50);
+  border: 1px solid var(--color-danger-500);
+  color: var(--color-danger-500);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 0.85rem;
+}
+
+/* ========== DASHBOARD ========== */
+
+.dashboard-page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header section with title + pulse */
+
+.dashboard-header {
+  display: grid;
+  grid-template-columns: minmax(0, 2.4fr) minmax(0, 1.2fr);
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.dashboard-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.7rem;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.dashboard-title {
+  font-size: 1.9rem;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+.dashboard-text {
+  font-size: 0.9rem;
+  color: #6b7280;
+  max-width: 680px;
+}
+
+/* Pulse card on the right */
+
+.dashboard-pulse {
+  background: var(--color-neutral-800);
+  color: #e5e7eb;
+  border-radius: 18px;
+  padding: 18px 20px;
+  align-self: flex-start;
+}
+
+.dashboard-pulse-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+
+.dashboard-pulse-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 12px;
+  font-size: 0.8rem;
+}
+
+.dashboard-pulse-list li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.pulse-label {
+  color: #9ca3af;
+}
+
+.pulse-value {
+  color: #f9fafb;
+}
+
+.dashboard-pulse-foot {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+/* Top metric cards */
+
+.dashboard-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.metric-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--color-neutral-200);
+}
+
+.metric-label {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+.metric-value {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.metric-foot {
+  font-size: 0.8rem;
+  color: var(--color-primary-600);
+}
+
+/* Generic dashboard cards */
+
+.dashboard-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px 20px;
+  border: 1px solid var(--color-neutral-200);
+  margin-bottom: 18px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.05);
+}
+
+.dashboard-card-title {
+  margin: 0 0 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* Recent artefacts list */
+
+.dashboard-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dashboard-list-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-top: 1px solid var(--color-neutral-200);
+}
+
+.dashboard-list-row:first-child {
+  border-top: none;
+}
+
+.list-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.list-sub {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+/* Status badges */
+
+.status-badge {
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.status-badge--trusted {
+  background: var(--color-success-50);
+  color: var(--color-success-500);
+}
+
+.status-badge--pending {
+  background: var(--color-warning-50);
+  color: var(--color-warning-500);
+}
+
+.status-badge--draft {
+  background: var(--color-neutral-100);
+  color: #4b5563;
+}
+
+/* Model coverage row */
+
+.coverage-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 12px;
+  font-size: 0.85rem;
+}
+
+.coverage-item {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.coverage-number {
+  font-weight: 600;
+}
+
+.coverage-label {
+  color: #6b7280;
+}
+
+
+/* === Force page content to start at the top next to the sidebar === */
+
+/* Make sure the main shell and right side don't vertically centre children */
+.app-shell {
+  align-items: stretch;
+}
+
+.app-main {
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+/* Main content area: normal document flow, no centering */
+.app-content {
+  display: block !important;
+  padding-top: 24px;          /* keep the nice top padding */
+}
+
+/* Remove any unexpected top margin from the first child inside app-content */
+.app-content > * {
+  margin-top: 0 !important;
+}
+
+/* Common page wrappers – ensure they don't add extra top offset */
+.page,
+.dashboard-page,
+.workspace-page,
+.leaderboard-page,
+.governance-page,
+.artefact-page,
+.artefact-create-page,
+.artefact-browse-page {
+  display: block !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
